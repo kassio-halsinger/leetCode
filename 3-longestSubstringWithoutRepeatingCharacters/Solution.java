@@ -12,6 +12,7 @@ class Solution {
         //"a" -> "a" -> 1
         //"bbbbbb" -> "b" -> 1
 
+        //THIS CAN PERHAPS BE DELETED
         //"<null>" -> 0
         if (s == null){
             return 0;
@@ -20,29 +21,17 @@ class Solution {
         //which has aleady appeared as we traverse
         //through the String s
         Set<String> set = new HashSet<>();
-        boolean noDuplicatesInSet = true;
 
         //until at the end of the string
         for (int i = 0; i < s.length(); i++){
-
-        }
-        //ITERATION 1
-            //add first letter to set
-            set.add(s.substring(0, 1));
-
-        //ITERATION 2
             //check if second letter
             //was previously added to set;
             //if not, add it
-            if (!set.add(s.substring(1,2))){
+            if (!set.add(s.substring(i,i+1))){
                 //if so, we have found a repeat char
-                return 1;
+                return set.size();
             }
-            
-
-        
-            
-
-
+        }
+        return set.size();
     }
 }
