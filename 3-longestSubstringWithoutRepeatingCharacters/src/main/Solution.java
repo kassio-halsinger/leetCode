@@ -4,22 +4,13 @@ package src.main;
 //Last Updated: 4/5/23
 
 import java.util.*;
-import java.math.*;
 
 class Solution {
     /* Given a string s, return the length of the...
      * ...longest substring w/o repeating chars.
      */ 
     public int lengthOfLongestSubstring(String s) {
-        //"abcabcbb" -> "abc" -> 3
-        //"a" -> "a" -> 1
-        //"bbbbbb" -> "b" -> 1
-
-        //THIS CAN PERHAPS BE DELETED
-        //"<null>" -> 0
-        if (s == null){
-            return 0;
-        }
+        
         //This set will contain each character
         //which has aleady appeared as we traverse
         //through the String s
@@ -35,12 +26,21 @@ class Solution {
             //was previously added to set;
             //if not, add it
             if (!set.add(s.substring(i,i+1))){
+
+                System.out.println("Repeat: "+s.substring(i,i+1));
+
                 //if so, we have found a repeat char
                 solution = Math.max(solution,set.size());
+
+                //reset the count and set, readding the letter we 
+                //just checked to the new set
                 set = new HashSet<>();
-                count = 1;
+                count = 0;
+                i--;
             }
+            System.out.println("i: "+i);
+            System.out.println("count: "+count);
         }
-        return Math.max(set.size(), count);
+        return Math.max(solution, count);
     }
 }
